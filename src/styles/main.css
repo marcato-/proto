@@ -1,3 +1,9 @@
+/* BPMN.js specific styles - Import from node_modules */
+@import 'bpmn-js/dist/assets/diagram-js.css';
+@import 'bpmn-js/dist/assets/bpmn-font/css/bpmn.css';
+@import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-codes.css';
+@import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css';
+
 /* Reset and base styles */
 * {
     margin: 0;
@@ -470,9 +476,3 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
-
-/* BPMN.js specific styles - Import from node_modules */
-@import 'bpmn-js/dist/assets/diagram-js.css';
-@import 'bpmn-js/dist/assets/bpmn-font/css/bpmn.css';
-@import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-codes.css';
-@import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css';
