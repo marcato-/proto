@@ -15,21 +15,34 @@ Every push to the `main` branch automatically:
 
 #### One-Time Setup
 
-1. **Enable GitHub Pages** in your repository:
+**IMPORTANT:** The deployment workflow is configured to run on the `main` branch. You'll need to merge your changes to `main` to activate automatic deployment.
+
+1. **Merge to main branch** (via GitHub):
+   - Go to your repository on GitHub
+   - Create a Pull Request from your current branch to `main`
+   - Review and merge the Pull Request
+   - OR if you don't have a main branch yet, set this branch as your default branch in repository settings
+
+2. **Enable GitHub Pages** in your repository:
    - Go to repository Settings
    - Navigate to Pages (in the sidebar)
    - Under "Build and deployment"
    - Set Source to: **GitHub Actions**
 
-2. **Push to main branch**:
-   ```bash
-   git push origin main
-   ```
-
 3. **Wait for deployment**:
    - Go to the Actions tab in your repository
    - Watch the "Deploy to GitHub Pages" workflow
    - Once complete, your app will be live!
+
+#### Alternative: Deploy from current branch
+
+If you want to deploy from a different branch, edit `.github/workflows/deploy.yml` and change:
+```yaml
+on:
+  push:
+    branches:
+      - main  # Change this to your branch name
+```
 
 ### Accessing Your Application
 
