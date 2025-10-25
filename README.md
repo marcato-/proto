@@ -1,98 +1,190 @@
+# BPMN Business Process Modeling Tool
 
-This readme file provides a brief overview of the file and folder structure
-included in the default MontageJS project directory.
+A modern, interactive BPMN (Business Process Model and Notation) modeling tool with integrated user story management. Create business processes using drag-and-drop functionality and link user stories directly to process elements.
 
->IMPORTANT: Be sure to replace the contents of this readme file with information
-about the final application before deploying the application or passing it on to
-a client.
+## Features
 
-Project Directory
-============
+### BPMN Process Modeling
+- **Drag-and-Drop Interface**: Intuitive canvas for creating BPMN diagrams
+- **Full BPMN 2.0 Support**: Support for tasks, events, gateways, and flows
+- **Visual Editing**: Real-time visual feedback as you build processes
+- **Import/Export**: Import and export BPMN XML files
+- **Auto-Save**: Processes are automatically saved to browser local storage
 
-The default project directory includes the following files and folders:
+### User Story Management
+- **Create User Stories**: Define user stories with title, description, and acceptance criteria
+- **Link to Process Elements**: Connect user stories to specific BPMN elements (tasks, events, etc.)
+- **Visual Indicators**: Linked elements are highlighted in the diagram
+- **Relationship Tracking**: See which stories are linked to each process element
 
-* assets/  -  Contains global stylesheets and images for the application.
-* index.html  -  Is the entry-point document for the application.
-* node_modules/  -  Contains the code dependencies required in development.
+### Data Persistence
+- **Local Storage**: All data is saved to browser local storage
+- **Export/Import**: Export your entire workspace including processes and stories
+- **Auto-Save**: Changes are automatically saved as you work
 
-    Includes Montage, the core framework, and Digit, a mobile-optimized user
-    interface widget set by default. Since MontageJS uses the CommonJS module
-    system, you can leverage the npm ecosystem for additional modules. To add
-    dependencies (e.g., foo), use `npm install foo` in the project directory.
+## Getting Started
 
-    NOTE: All packages in this directory must be included as dependencies
-    in package.json.
+### Installation
 
-* package.json  -  Describes the application and the dependencies included in
-            the node_modules directory.
-* README.md  -  The default readme file.
-* run-tests.html  -  Is a page to run Jasmine tests manually in the browser.
-* test/  -  Contains tests for the application.
+1. Install dependencies:
+```bash
+npm install
+```
 
-    By default, this directory includes all.js, a module that points the test runner
-    to all jasmine specs.
+### Development
 
-* ui/  -  Contains the application user interface components.
+Run the development server:
+```bash
+npm run dev
+```
 
-    By default, this directory contains one component: main.reel (the Main
-    user interface component)
+The application will open in your browser at `http://localhost:3000`
 
-In development, you can expand this project directory as necessary; for example,
-depending on the project you may want to add the following folders:
+### Building for Production
 
-* locale/  -  For localized content.
-* scripts/  -  For JS libraries that do not support the CommonJS exports object
-           and, therefore, have to be loaded using a `<script>` tag.
+Build the application:
+```bash
+npm run build
+```
 
-Unit Testing
-=========
+Preview the production build:
+```bash
+npm run preview
+```
 
-MontageJS uses some pure unit tests that are straightforward [Jasmine specs][1].
+## Usage Guide
 
-To install the test code, run `npm install` in your project folder. This installs the
-the [montage-testing][2] package, which adds some useful utilities for writing
-jasmine tests. You will need the file run-tests.html.
+### Creating a BPMN Process
 
-For an example of how we implement unit testing, see the [digit][3] repository:
+1. **Add Elements**: Use the palette on the left side of the canvas to drag and drop BPMN elements
+2. **Connect Elements**: Click and drag from one element to another to create sequence flows
+3. **Edit Properties**: Click on elements to edit their names and properties
+4. **Save Process**: Click "Save Process" to persist your work
 
-* [run-tests][4] loads our test environment.
-* `data-module="test/all"` inside the final script tag tells the system to load [test/all.js][5].
-* all.js specifies a list of module ids for the runner to execute.
+### Managing User Stories
 
->Note that in this example, all the tests load a page in an iframe using
-`TestPageLoader.queueTest()`. These are akin to integration tests since they test
-the component in a real environment.
+1. **Add Story**: Click "+ Add Story" in the sidebar
+2. **Fill Details**: Enter the story title, description, and acceptance criteria
+3. **Save Story**: Click "Save Story" to add it to your list
+4. **Edit Story**: Click on any story card to edit it
 
-We also test some components by [mocking their dependencies][6].
+### Linking Stories to Process Elements
 
-Documentation
-============
+1. **Right-Click Element**: Right-click on any BPMN element in the diagram
+2. **Select "Link User Story"**: Choose this option from the context menu
+3. **Choose Stories**: Select one or more user stories to link
+4. **Confirm**: Click "Link Selected" to create the associations
 
-Here are some links you may find helpful:
+Linked elements will be highlighted in green on the canvas.
 
-* [API Reference][7]
-* [Documentation][8]
-* [FAQ][9]
+### Viewing Links
 
-Contact
-======
+- **From Element**: Right-click an element and select "View Links" to see linked stories
+- **From Story**: Edit a story to see all linked BPMN elements
+- **Remove Links**: Click the × button next to a linked element in the story details
 
-* Got questions? Join us on [irc.freenode.net#montage][10].
-* Got feedback or want to report a bug? Let us know by creating a new [Github issue][11].
-* Want to contribute? [Pull-requests][12] are more than welcome.
+### Importing/Exporting
 
-[1]: https://github.com/montagejs/montage/blob/master/test/core/super-spec.js        "Jasmine specs"
-[2]: https://github.com/montagejs/montage-testing        "montage-testing"
-[3]: https://github.com/montagejs/digit        "digit"
-[4]: https://github.com/montagejs/digit/blob/master/run-tests.html        "run-tests"
-[5]: https://github.com/montagejs/digit/tree/master/test        "test/all.js"
-[6]: https://github.com/montagejs/montage/blob/master/test/base/abstract-button-spec.js        "mocking their dependencies"
-[7]: http://montagejs.org/api/        "API Reference"
-[8]: http://montagejs.org/docs/        "Documentation"
-[9]: http://montagejs.org/docs/faq.html        "FAQ"
-[10]: http://webchat.freenode.net/?channels=montage        "irc.freenode.net#montage"
-[11]: https://github.com/montagejs/montage/issues        "Github issue"
-[12]: https://github.com/montagejs/montage/pulls        "Pull-requests"
+#### Export BPMN
+Click "Export BPMN" to download the current process as a `.bpmn` XML file.
 
-Last edited: November 14, 2013
+#### Import BPMN
+Click "Import BPMN" and select a `.bpmn` file to load it into the modeler.
 
+## Architecture
+
+### Component Structure
+
+```
+src/
+├── main.js                 # Application entry point
+├── modeler/
+│   └── BpmnModeler.js     # BPMN.js wrapper and modeler logic
+├── stories/
+│   └── UserStoryManager.js # User story CRUD and UI management
+├── stores/
+│   └── DataStore.js       # Data persistence and state management
+└── styles/
+    └── main.css           # Application styles
+```
+
+### Key Technologies
+
+- **bpmn-js**: Industry-standard BPMN modeling library
+- **Vite**: Fast build tool and development server
+- **Vanilla JavaScript**: No framework dependencies for simplicity
+- **LocalStorage API**: Browser-based data persistence
+
+## Data Model
+
+### User Story
+```javascript
+{
+  id: string,
+  title: string,
+  description: string,
+  acceptanceCriteria: string,
+  linkedElements: string[] // BPMN element IDs
+}
+```
+
+### Element Link
+```javascript
+{
+  elementId: {
+    storyIds: string[],
+    elementData: {
+      id: string,
+      name: string,
+      type: string
+    }
+  }
+}
+```
+
+## Browser Compatibility
+
+- Chrome/Edge: Latest versions
+- Firefox: Latest versions
+- Safari: Latest versions
+
+Modern browser features required:
+- ES6 Modules
+- LocalStorage
+- Flexbox/Grid
+
+## Development Notes
+
+### Adding Custom BPMN Elements
+
+Edit `src/modeler/BpmnModeler.js` to add custom BPMN elements or extensions.
+
+### Styling Customization
+
+Modify `src/styles/main.css` to customize the look and feel.
+
+### Data Storage
+
+Change `src/stores/DataStore.js` to use different storage backends (e.g., IndexedDB, REST API).
+
+## License
+
+See LICENSE.md for details.
+
+## Contributing
+
+Contributions are welcome! Please follow these guidelines:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## Support
+
+For issues and questions, please use the GitHub issue tracker.
+
+---
+
+Built with [bpmn-js](https://bpmn.io/toolkit/bpmn-js/) - A powerful BPMN 2.0 rendering toolkit

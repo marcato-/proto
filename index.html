@@ -1,35 +1,100 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>proto</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">    
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="proto">
-    <meta name="mobile-web-app-capable" content="yes">
-    
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="assets/images/icons/apple-touch-icon-152x152-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="assets/images/icons/apple-touch-icon-120x120-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="assets/images/icons/apple-touch-icon-76x76-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="assets/images/icons/apple-touch-icon-57x57-precomposed.png">
-    <link rel="shortcut icon" href="assets/images/icons/apple-touch-icon.png">
-    <link rel="shortcut icon" sizes="1024x1024" href="assets/images/icons/icon-1024x1024.png">
-    <link rel="shortcut icon" sizes="128x128" href="assets/images/icons/icon-128x128.png">
-
-    <link rel="stylesheet" href="assets/style/style.css">
-
-    <script src="node_modules/montage/montage.js"></script>
-    <script type="text/montage-serialization">
-    {
-        "owner": {
-            "prototype": "montage/ui/loader.reel"
-        }
-    }
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BPMN Business Process Modeling Tool</title>
+    <link rel="stylesheet" href="/src/styles/main.css">
 </head>
 <body>
-    <span class="loading"></span>
+    <div id="app">
+        <header class="app-header">
+            <h1>BPMN Process Modeler</h1>
+            <div class="header-actions">
+                <button id="new-process-btn" class="btn btn-primary">New Process</button>
+                <button id="save-process-btn" class="btn btn-success">Save Process</button>
+                <button id="export-process-btn" class="btn btn-secondary">Export BPMN</button>
+                <button id="import-process-btn" class="btn btn-secondary">Import BPMN</button>
+            </div>
+        </header>
+
+        <div class="app-container">
+            <!-- BPMN Modeler Canvas -->
+            <div class="modeler-container">
+                <div id="bpmn-canvas"></div>
+            </div>
+
+            <!-- User Stories Panel -->
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <h2>User Stories</h2>
+                    <button id="add-story-btn" class="btn btn-small btn-primary">+ Add Story</button>
+                </div>
+
+                <div class="user-stories-list" id="user-stories-list">
+                    <!-- User stories will be dynamically added here -->
+                </div>
+
+                <div class="story-details" id="story-details" style="display: none;">
+                    <h3>Story Details</h3>
+                    <div class="story-form">
+                        <input type="hidden" id="story-id">
+                        <div class="form-group">
+                            <label for="story-title">Title</label>
+                            <input type="text" id="story-title" placeholder="As a user, I want to...">
+                        </div>
+                        <div class="form-group">
+                            <label for="story-description">Description</label>
+                            <textarea id="story-description" rows="4" placeholder="Story description..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="story-acceptance">Acceptance Criteria</label>
+                            <textarea id="story-acceptance" rows="3" placeholder="Acceptance criteria..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="story-linked-elements">Linked BPMN Elements</label>
+                            <div id="linked-elements-list" class="linked-elements">
+                                <!-- Linked elements will be shown here -->
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button id="save-story-btn" class="btn btn-success">Save Story</button>
+                            <button id="delete-story-btn" class="btn btn-danger">Delete</button>
+                            <button id="cancel-story-btn" class="btn btn-secondary">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Context Menu for linking -->
+        <div id="context-menu" class="context-menu" style="display: none;">
+            <div class="context-menu-item" id="link-story-menu">Link User Story</div>
+            <div class="context-menu-item" id="view-links-menu">View Links</div>
+        </div>
+
+        <!-- Modal for selecting stories -->
+        <div id="story-selector-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Select User Stories to Link</h3>
+                    <button class="modal-close" id="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div id="story-selector-list" class="story-selector-list">
+                        <!-- Stories will be listed here with checkboxes -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="confirm-link-btn" class="btn btn-primary">Link Selected</button>
+                    <button id="cancel-link-btn" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="import-file-input" style="display: none;" accept=".bpmn,.xml">
+
+    <script type="module" src="/src/main.js"></script>
 </body>
 </html>
